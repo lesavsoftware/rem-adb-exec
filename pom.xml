@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <groupId>com.lesavsoft.remadbexec</groupId>
+    <version>1.0</version>
+    <artifactId>remadbexec</artifactId> 
+    
+    <name>Remote Adb Execution Project</name>
+    <packaging>pom</packaging>
+    
+    <profiles>
+      <profile>
+         <id>all</id>
+         <modules>
+            <module>core</module>
+            <module>tools</module>
+         </modules>
+      </profile>
+   </profiles>
+    
+    <dependencyManagement>
+        <dependencies>
+                <dependency>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                    <version>1.2.17</version>
+                </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+     
+    <dependencies>
+         <dependency>
+             <groupId>log4j</groupId>
+             <artifactId>log4j</artifactId>
+        </dependency>
+    </dependencies>
+    
+     
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <fork>true</fork>
+                        <compilerArgument>-Xlint:none</compilerArgument>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>    
+</project>

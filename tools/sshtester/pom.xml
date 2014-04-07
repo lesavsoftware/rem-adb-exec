@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+    <parent>
+	<groupId>com.lesavsoft.remadbexec</groupId>
+	<version>1.0</version>
+        <artifactId>tools</artifactId>
+    </parent>
+
+    <artifactId>sshtester</artifactId>
+    <name>Ssh exec tester</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lesavsoft.remadbexec</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>  
+
+      <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.3</version>
+                <configuration>
+                    <configurationDirectory>conf</configurationDirectory>
+                    <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+                    <assembleDirectory>${basedir}/sshtester-bin</assembleDirectory>
+                    <extraJvmArguments>-Xmx1024m -Xms256m -XX:PermSize=32m -XX:MaxPermSize=64m</extraJvmArguments>
+                    <repositoryLayout>flat</repositoryLayout>
+                    <repositoryName>lib</repositoryName>
+                    <useWildcardClassPath>true</useWildcardClassPath>
+                    <programs>
+                        <program>
+                            <mainClass>com.lesavsoft.remadbexec.tools.sshtester.SshTester</mainClass>
+                            <name>sshtester</name>
+                        </program>
+                    </programs>                    
+                </configuration>
+                
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copyFiles</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <echo message="Start to copy resource from ${basedir}/resources to ${basedir}/sshtester/conf"/>
+                                <copy todir="${basedir}/sshtester-bin/conf">
+                                    <fileset dir="${basedir}/resources">
+                                        <include name="**/*"/>
+                                    </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+       </plugins>
+    </build>
+</project>

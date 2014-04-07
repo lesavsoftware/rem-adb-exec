@@ -1,0 +1,14 @@
+   RemAdbExec library
+   Copyright 2014 LeSav Software Tmi
+   =================================
+
+   SSHv2 connectivity support is provided Ganymed SSH-2 for Java, which is released under a BSD style license. The Java implementations of the AES, Blowfish and 3DES ciphers have been taken (and slightly modified) from the cryptography package released by The Legion Of The Bouncy Castle.
+      http://www.ganymed.ethz.ch/ssh2/
+      The library available from maven repository:
+        <dependency>
+            <groupId>ch.ethz.ganymed</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+            <version>build210</version>
+        </dependency>
+
+
